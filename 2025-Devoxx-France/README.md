@@ -29,9 +29,13 @@ Keynote (BEGINNER level) - Thursday from 09:00-09:25 - Amphi bleu
 >Très régulièrement sollicitée par les médias, Elodie Mielczareck décrypte les tendances sociétales de fond, ainsi que les dynamiques comportementales de nos représentants politiques et autres célébrités. Elle est également conférencière et auteure. Elodie a publié plusieurs ouvrages grands publics et et publie régulièrement des articles (notamment dans la revue scientifique The Conversation).
 
 ```markdown
-#### Notes
-
-notes...
+#### Notes	
+    •   Le sémiologue : spécialiste du sens, détecte les manipulations à travers les signes et le langage.
+	•	Question centrale : Comment l’IA modifie-t-elle notre perception du réel ?
+	•	Notion d’Umwelt : relation entre un être et son univers perçu.
+	•	Exemple : le poisson rouge ne perçoit plus l’eau, tant elle est omniprésente dans son monde.
+	•	Déformation du réel : plusieurs niveaux de distorsion de la vérité.
+	•	Rôle de l’IA : déjà utilisée pour manipuler le réel et les identités.
 ```
 
 ### La territorialisation des infrastructures comme levier de pouvoir
