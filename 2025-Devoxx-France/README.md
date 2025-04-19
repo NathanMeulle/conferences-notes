@@ -30,7 +30,7 @@ Keynote (BEGINNER level) - Thursday from 09:00-09:25 - Amphi bleu
 
 ```markdown
 #### Notes	
-    •   Le sémiologue : spécialiste du sens, détecte les manipulations à travers les signes et le langage.
+	•	Le sémiologue : spécialiste du sens, détecte les manipulations à travers les signes et le langage.
 	•	Question centrale : Comment l’IA modifie-t-elle notre perception du réel ?
 	•	Notion d’Umwelt : relation entre un être et son univers perçu.
 	•	Exemple : le poisson rouge ne perçoit plus l’eau, tant elle est omniprésente dans son monde.
@@ -48,10 +48,19 @@ Keynote (BEGINNER level) - Thursday from 09:35-10:00 - Amphi bleu
 >Ophélie Coelho est une chercheuse indépendante, autrice et conférencière, spécialisée dans la géopolitique du numérique. Elle est doctorante associée au Centre Internet et Société du CNRS et du laboratoire Carism (Panthéon-Assas).
 >En 2023, elle publie "Géopolitique du numérique : l'impérialisme à pas de géants" aux Éditions de l'Atelier, où elle analyse la redistribution des pouvoirs entre acteurs étatiques et privés, ainsi que l'influence croissante des multinationales technologiques dans les relations internationales.
 
+ ![IMG_7856](https://github.com/user-attachments/assets/8420aa7b-2e8d-4422-9775-2ca1255e070d)
+
 ```markdown
 #### Notes
-
-notes...
+	•	Carte du réseau télégraphique en 1900
+Les réseaux témoignent à la fois d’une force (interconnexion, contrôle, communication rapide) mais aussi d’une faiblesse (vulnérabilité, dépendance, exposition stratégique).
+	•	Exemple contemporain (2019) :
+Les États-Unis ont refusé la construction d’un câble sous-marin chinois entre Hong Kong et leur territoire, illustrant l’enjeu géopolitique des infrastructures numériques.
+	•	Photographie du pouvoir en couches (cf photo layering) :
+Visualiser les différents niveaux d’influence (géographie, infrastructures, flux, décisions politiques) permet de mieux comprendre le rôle des infrastructures dans le rapport de force mondial.
+	•	Cas du continent africain :
+	•	Faible développement de serveurs, centres de données et sites technologiques dans les pays enclavés.
+	•	L’Afrique du Sud joue un rôle central en tant que point d’entrée des réseaux, redistribuant ensuite la connectivité aux autres pays du continent.
 ```
 
 ### Développez plus efficacement grâce aux Design Patterns appliqués à MongoDB
@@ -68,10 +77,67 @@ Conference (INTERMEDIATE level) - Thursday from 10:30-11:15 - Paris 143
 >Après une parenthèse professionnelle dans l'ébénisterie, Brice a posé ses outils et repris son clavier et sa souris pour rejoindre l'équipe de Solutions Architect de MongoDB. Il met maintenant à profit ses expériences variées (dev, Scrum Master, tech lead, avant-vente) pour aider ses clients à exploiter au mieux les capacités de MongoDB.
 En quête d'amélioration continue et des solutions pragmatiques, Brice aime transmettre ses connaissances et aider les autres à progresser.
 
+![IMG_7858](https://github.com/user-attachments/assets/01db08b7-b80f-4603-b906-7701fca73495)
+
+
 ```markdown
 #### Notes
+⸻
+	•	Présentation du pattern Transactional Outbox
+	•	The dual write problem
+	•	Besoin de synchroniser les données dans un environnement de microservices
+	•	Objectif : garantir une consistance éventuelle
+	•	On veut faire une opération Mongo et envoyer un message dans Kafka, de manière atomique
+	•	Patterns connus :
+	•	Pattern Saga
+	•	Pattern CQRS
+	•	Première solution : 2PC (Two-Phase Commit)
+	•	Coordinateur qui décide si on commit ou pas
+	•	Très contraignant :
+	•	Le broker doit le supporter
+	•	Couplage fort entre la base de données et le broker
+	•	Pas résilient aux pannes réseau
+	•	Risque de deadlock
+	•	Exemple de code naïf :
+	•	On fait un insert, puis un produce
+	•	Risque : une seule des deux opérations passe
+	•	On peut encapsuler les deux dans une transaction avec startSessionAsync et un try/catch
+	•	Exemple : code Devoxx avec NaturalOrder et orderWithTransactionRepository
+	•	Mais le commit peut échouer → message envoyé dans Kafka, rien écrit en base
 
-notes...
+⸻
+
+Pattern : Transactional Outbox
+	•	On insère la donnée métier et un message dans une collection outbox, dans une seule transaction
+	•	Un processor (microservice) lit la collection outbox
+	•	Il envoie le message dans Kafka
+	•	Puis il met à jour l’état du message dans la collection outbox
+	•	Avantages :
+	•	Kafka est hors de la transaction principale
+	•	Le pattern garantit que les messages seront envoyés au moins une fois
+	•	Si l’update échoue à la fin, le message sera renvoyé
+
+⸻
+
+Scalabilité :
+	•	Lire la collection outbox uniquement via un index (rapide car en RAM)
+	•	Utiliser des traitements en chunks ou batchs
+	•	Lancer plusieurs processors en parallèle
+	•	Pour éviter les conflits entre processors (skip/lock), utiliser une autre approche
+
+⸻
+
+Optimisation avec oplog et change stream :
+	•	oplog : donne accès au journal des opérations effectuées en base
+	•	change stream : permet de s’abonner aux changements sur une collection
+	•	Exemple : on utilise watch sur orders pour réagir aux changements
+	•	On peut traiter les événements dès qu’ils arrivent avec une fonction de type on change
+
+⸻
+
+Aller plus loin avec le stream processing :
+	•	Permet de définir des fenêtres temporelles
+	•	Permet de regrouper des événements pour faire du traitement en lots
 ```
 
 ### Booster le démarrage des applications Java : optimisations JVM et frameworks
