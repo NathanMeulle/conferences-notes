@@ -29,7 +29,8 @@ Keynote (BEGINNER level) - Thursday from 09:00-09:25 - Amphi bleu
 >Très régulièrement sollicitée par les médias, Elodie Mielczareck décrypte les tendances sociétales de fond, ainsi que les dynamiques comportementales de nos représentants politiques et autres célébrités. Elle est également conférencière et auteure. Elodie a publié plusieurs ouvrages grands publics et et publie régulièrement des articles (notamment dans la revue scientifique The Conversation).
 
 ```markdown
-#### Notes	
+#### Notes
+⸻
 	•	Le sémiologue : spécialiste du sens, détecte les manipulations à travers les signes et le langage.
 	•	Question centrale : Comment l’IA modifie-t-elle notre perception du réel ?
 	•	Notion d’Umwelt : relation entre un être et son univers perçu.
@@ -52,15 +53,19 @@ Keynote (BEGINNER level) - Thursday from 09:35-10:00 - Amphi bleu
 
 ```markdown
 #### Notes
+⸻
 	•	Carte du réseau télégraphique en 1900
-Les réseaux témoignent à la fois d’une force (interconnexion, contrôle, communication rapide) mais aussi d’une faiblesse (vulnérabilité, dépendance, exposition stratégique).
+	•	Les réseaux témoignent à la fois d’une force (interconnexion, contrôle, communication rapide)
+	•	Mais aussi d’une faiblesse (vulnérabilité, dépendance, exposition stratégique).
 	•	Exemple contemporain (2019) :
-Les États-Unis ont refusé la construction d’un câble sous-marin chinois entre Hong Kong et leur territoire, illustrant l’enjeu géopolitique des infrastructures numériques.
+	•	Les États-Unis ont refusé la construction d’un câble sous-marin chinois entre Hong Kong et leur territoire
+	•	--> cela illustre l’enjeu géopolitique des infrastructures numériques.
 	•	Photographie du pouvoir en couches (cf photo layering) :
-Visualiser les différents niveaux d’influence (géographie, infrastructures, flux, décisions politiques) permet de mieux comprendre le rôle des infrastructures dans le rapport de force mondial.
+	•	Les infrastructures, ont un rôle dans le rapport de force mondial.
 	•	Cas du continent africain :
 	•	Faible développement de serveurs, centres de données et sites technologiques dans les pays enclavés.
-	•	L’Afrique du Sud joue un rôle central en tant que point d’entrée des réseaux, redistribuant ensuite la connectivité aux autres pays du continent.
+	•	L’Afrique du Sud joue un rôle central en tant que point d’entrée des réseaux,
+	•	--> redistribue ensuite la connectivité aux autres pays du continent.
 ```
 
 ### Développez plus efficacement grâce aux Design Patterns appliqués à MongoDB
