@@ -26,7 +26,7 @@ Keynote (BEGINNER level) - Thursday from 09:00-09:25 - Amphi bleu
 > #### Speaker Bio : Elodie Mielczareck
 >Elodie Mielczareck est sémiolinguiste (sémiologue pour le grand public). Elle est spécialisée dans le langage verbal (sémantique) et le langage non verbal (body language). Elle conseille également les dirigeants d’entreprise et accompagne certaines agences de communication et relations publiques internationales, notamment sur la question de la Raison d’être.
 >
->Très régulièrement sollicitée par les médias, Elodie Mielczareck décrypte les tendances sociétales de fond, ainsi que les dynamiques comportementales de nos représentants politiques et autres célébrités. Elle est également conférencière et auteure. Elodie a publié plusieurs ouvrages grands publics et et publie régulièrement des articles (notamment dans la revue scientifique The Conversation).
+>Très régulièrement sollicitée par les médias, Elodie Mielczareck décrypte les tendances sociétales de fond, ainsi que les dynamiques comportementales de nos représentants politiques et autres célébrités. Elle est également conférencière et auteure. Elodie a publié plusieurs ouvrages grand publics et publie régulièrement des articles (notamment dans la revue scientifique The Conversation).
 
 ```markdown
 #### Notes
@@ -94,18 +94,18 @@ En quête d'amélioration continue et des solutions pragmatiques, Brice aime tra
 	•	Objectif : garantir une consistance éventuelle
 	•	On veut faire une opération Mongo et envoyer un message dans Kafka, de manière atomique
 	•	Patterns connus :
-	•	Pattern Saga
-	•	Pattern CQRS
+		    Pattern Saga
+		    Pattern CQRS
 	•	Première solution : 2PC (Two-Phase Commit)
-	•	Coordinateur qui décide si on commit ou pas
-	•	Très contraignant :
-	•	Le broker doit le supporter
-	•	Couplage fort entre la base de données et le broker
-	•	Pas résilient aux pannes réseau
-	•	Risque de deadlock
+		    Coordinateur qui décide si on commit ou pas
+		    Très contraignant :
+		    Le broker doit le supporter
+		    Couplage fort entre la base de données et le broker
+		    Pas résilient aux pannes réseau
+		    Risque de deadlock
 	•	Exemple de code naïf :
-	•	On fait un insert, puis un produce
-	•	Risque : une seule des deux opérations passe
+		    On fait un insert, puis un produce
+		    Risque : une seule des deux opérations passe
 	•	On peut encapsuler les deux dans une transaction avec startSessionAsync et un try/catch
 	•	Exemple : code Devoxx avec NaturalOrder et orderWithTransactionRepository
 	•	Mais le commit peut échouer → message envoyé dans Kafka, rien écrit en base
@@ -118,9 +118,9 @@ Pattern : Transactional Outbox
 	•	Il envoie le message dans Kafka
 	•	Puis il met à jour l’état du message dans la collection outbox
 	•	Avantages :
-	•	Kafka est hors de la transaction principale
-	•	Le pattern garantit que les messages seront envoyés au moins une fois
-	•	Si l’update échoue à la fin, le message sera renvoyé
+		    Kafka est hors de la transaction principale
+		    Le pattern garantit que les messages seront envoyés au moins une fois
+		    Si l’update échoue à la fin, le message sera renvoyé
 
 ⸻
 
@@ -155,8 +155,38 @@ Conference (INTERMEDIATE level) - Thursday from 11:35-12:20 - Neuilly 151
 
 ```markdown
 #### Notes
+⸻
+	•	Booster = démarrer plus vite, consommer moins de resources
+	•	permet une meilleure scalabilité & gain de temps sur le cycle de dev/déploiement
+	•	Niveau application :
+	    	    Lazy initialization
+	•	Niveau Framework
+	    	    fait beaucoup de choses : scan du classpath, parse du bytecode...
+	    	    sur spring : scan du classpath (fixé au build mais fait au runtime)
+	    	    création des proxys (transactions et AOP)
+	    	    --> Spring AOT permet de faire certaines choses au moment du build
+	    	    ex, détection de dépendances entre classes
+	•	Niveau JVM
+	•	Chargement et linking des classes
+	•	Compilateur JIT, diff entre C1 et C2
+	•	La JVM gère automatiquement le choix entre C1 et C2
+	•	Les parties du code les plus appelées sont optimisées
+	•	Chargement des classes
+	            CDS permet de stocker un format + facilement lisible pour le chargement des classes 
+	    	    Leyden étend CDS, même principe avec + d'éléments dans l'archive
+	            CRAC, capture une image de notre application, pas supporté par toutes les JVM
+	    	    Native Image (GraalVM) : pas de réflexion
+	•	Niveau Infra
+	    	    Attention aux limitations CPU
+	•	Conclusion :
+		|                      | Gain      | Simplicité        |
+		|----------------------|-----------|-------------------|
+		| extraire le jar      | ★★        | ★★★               |
+		| Spring AOT           | ★         | ★★                |
+		| CDS / Leyden         | ★★        | ★★                |
+		| CRaC                 | ★★★       | ★                 |
+		| native image         | ★★★       | ★                 |
 
-notes...
 ```
 
 ### AssertJ-DB : Validez vos opérations en bases de données avec style
@@ -166,12 +196,12 @@ Lunch Talk (INTERMEDIATE level) - Thursday from 13:00-13:15 - Paris 143
 >Les tests sont souvent fastidieux, les assertions plus encore. Pourtant valider que nos applications réalisent bien les opérations prévues sur la base de données est un point essentiel à la qualité du code. Pour ça, des solutions existent mais nécessitent souvent d’écrire les assertions dans un autre langage ( XML, ... ) que celui de notre code. Durant cette présentation nous ferons connaissance avec AssertJ-DB. Cette librairie permet d’écrire en Java les assertions de base de données de manière fluide et compatible avec AssertJ.
 
 > #### Speaker Bio : Julien Roy
->Développeur depuis 25 ans et actuellement Software Architect. Je travaille principalement sur des plateformes à fort trafic. Mes centre d'intérêts actuels tournent autour des architectures micro-services , event-driven.
+>Développeur depuis 25 ans et actuellement Software Architect. Je travaille principalement sur des plateformes à fort trafic. Mes centres d'intérêts actuels tournent autour des architectures micro-services, event-driven.
 
 ```markdown
 #### Notes
-
-notes...
+⸻
+Pas vu 😕, apparement pas compatible avec MongoDB
 ```
 
 
@@ -201,6 +231,7 @@ notes...
 
 ```markdown
 #### Notes
+⸻
 
 notes...
 ```
@@ -209,7 +240,7 @@ notes...
 Tools-in-Action (INTERMEDIATE level) - Thursday from 17:00-17:30 - Maillot
 > #### Abstract
 >
->Vous aussi vous, vous êtes arrachés les cheveux sur des NullPointerException (NPE pour les intimes) en production et vous voudriez éviter cela?
+>Vous aussi vous, êtes arrachés les cheveux sur des NullPointerException (NPE pour les intimes) en production et vous voudriez éviter cela?
 >Cette présentation est faite pour vous.
 >L'idée du talk est de vous présenter différentes techniques afin d'éviter au maximum les potentielles NPE.
 >Dans un premier temps, nous parlerons de l'utilisation de certaines classes, de patterns et de bonnes pratiques pour les éviter.
@@ -221,8 +252,17 @@ Tools-in-Action (INTERMEDIATE level) - Thursday from 17:00-17:30 - Maillot
 
 ```markdown
 #### Notes
+⸻
+	•	Bonnes pratiques pour éviter les NPE :
+			utiliser des optional avec orElseGet plutôt que orElse qui évalue direct
+			utiliser des instances vides, neutres plutôt que null
+			initialiser complètement nos objets --> création d'objets immuables
+			stage Builder permet d'utiliser un builder et de faire .build avec init complet
+			faire des tests
+	•	pour aller + loin, utiliser un vérificateur de NPE ex :Checker ou nullaway
+	•	Annoter chaque param, constructeurs...
+	•	Assez restrictif au début : à mettre progressivement sur des sous-ensemble de son projet
 
-notes...
 ```
 
 
@@ -243,8 +283,11 @@ Conference (INTERMEDIATE level) - Friday from 10:30-11:15 - Maillot
 
 ```markdown
 #### Notes
+⸻
+	•	Présentation des différentes façon de faire un Hello World
+	•	de java 1.1 avec sout à java 24 plus concis et sans public class ni main static
+	•	plusieurs façons anecdotique relative à des libs java maintenant dépréciées
 
-notes...
 ```
 
 ### Continuations: The magic behind virtual threads in Java
@@ -264,6 +307,7 @@ Conference (INTERMEDIATE level) - Friday from 11:35-12:20 - Paris 143
 
 ```markdown
 #### Notes
+⸻
 
 notes...
 ```
@@ -274,15 +318,16 @@ Deep Dive (INTERMEDIATE level) - Friday from 13:30-16:30 - Paris 14
 >
 >Quand on génère un projet sur start.spring.io, tout est inclus pour commencer à développer, et même à tester! Il y a un test avec @SpringBootTest, tout est simple et rapide. 6 mois plus tard, vos tests prennent 12 minutes à s'exécuter, et vous avez un échec aléatoire au moins une fois par jour. Et des mocks partout, et des tests d'intégration de 197 lignes de long.
 >
->@SpringBootTest est simple à utiliser, et permet de démarrer immédiatement. Mais en l'utilisant partout, les développeurs passent à côté de tout ce que Boot peut apporter en terme de tests. Ils ne pensent pas suffisamment à l'architecture de leur tests, ne produisent pas des tests lisibles, perdent de vue l'utilité des tests: feedback rapide, confiance, guide pour le design...
+>@SpringBootTest est simple à utiliser, et permet de démarrer immédiatement. Mais en l'utilisant partout, les développeurs passent à côté de tout ce que Boot peut apporter en terme de tests. Ils ne pensent pas suffisamment à l'architecture de leurs tests, ne produisent pas des tests lisibles, perdent de vue l'utilité des tests: feedback rapide, confiance, guide pour le design...
 >
->Dans ce talk, vous découvrirez toute la panoplie de tests offerte par Spring Boot, via des exemples en live-coding. Au programme: les test slices, le cache de TestContext pour une éxécution rapide, intégration test containers, toutes les techniques de test HTTP... Et surtout, les pépiptes cachées dans spring-boot-starter-test, comme Awaitility et AssertJ. Repartez avec toutes les best practices - appliquées à Spring.
+>Dans ce talk, vous découvrirez toute la panoplie de tests offerte par Spring Boot, via des exemples en live-coding. Au programme: les test slices, le cache de TestContext pour une exécution rapide, intégration test containers, toutes les techniques de test HTTP... Et surtout, les pépites cachées dans spring-boot-starter-test, comme Awaitility et AssertJ. Repartez avec toutes les best practices - appliquées à Spring.
 
 > #### Speaker Bio : Daniel Garnier-Moiroux
 >Daniel est ingénieur dans les équipes Spring, où il contribue à Spring Security, et sur solutions dans le domaine de la gestion d'identité et du Single-Sign On. Il enseigne également l'ingénierie informatique aux Mines de Paris. Dans sa carrière, il a également été tech lead et consultant.
 
 ```markdown
 #### Notes
+⸻
 
 notes...
 ```
