@@ -318,10 +318,6 @@ Conference (INTERMEDIATE level) - Friday from 11:35-12:20 - Paris 143
  	•	Continuation
             Representation of the current state of the program 
 	•	Code bit.ly/javacontinuations
-
-
-
-
 ```
 
 ### Tester les apps Spring Boot, sous toutes les coutures
