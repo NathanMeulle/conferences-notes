@@ -308,8 +308,20 @@ Conference (INTERMEDIATE level) - Friday from 11:35-12:20 - Paris 143
 ```markdown
 #### Notes
 ⸻
+    •	Plateform threads = thin wrapper over os threads 
+            One to one mapping with os threads 
+            Thread pools 
+ 	•	Virtual threads 
+            Lightweight user threads
+            Highly scalable 
+            No need for pooling 
+ 	•	Continuation
+            Representation of the current state of the program 
+	•	Code bit.ly/javacontinuations
 
-notes...
+
+
+
 ```
 
 ### Tester les apps Spring Boot, sous toutes les coutures
