@@ -156,7 +156,7 @@ Conference (INTERMEDIATE level) - Thursday from 11:35-12:20 - Neuilly 151
 ```markdown
 #### Notes
 ⸻
-	•	Booster = démarrer plus vite, consommer moins de resources
+	•	Booster = démarrer plus vite, consommer moins de ressources
 	•	permet une meilleure scalabilité & gain de temps sur le cycle de dev/déploiement
 	•	Niveau application :
 	    	    Lazy initialization
@@ -181,11 +181,11 @@ Conference (INTERMEDIATE level) - Thursday from 11:35-12:20 - Neuilly 151
 	•	Conclusion :
 		|                      | Gain      | Simplicité        |
 		|----------------------|-----------|-------------------|
-		| extraire le jar      | ★★        | ★★★               |
-		| Spring AOT           | ★         | ★★                |
-		| CDS / Leyden         | ★★        | ★★                |
-		| CRaC                 | ★★★       | ★                 |
-		| native image         | ★★★       | ★                 |
+		| extraire le jar      | ★★       | ★★★              |
+		| Spring AOT           | ★         | ★★               |
+		| CDS / Leyden         | ★★       | ★★               |
+		| CRaC                 | ★★★      | ★                |
+		| native image         | ★★★      | ★                |
 
 ```
 
@@ -232,8 +232,16 @@ Pas vu 😕, apparement pas compatible avec MongoDB
 ```markdown
 #### Notes
 ⸻
-
-notes...
+	•	[Lien TP](https://codesimcoe.github.io/workshop-javase-2025-api/evolutions-api.html
+	•	evolution dans l'api stream
+		    exemple utilisation de mapmulti :  
+    		    	fruits.stream().mapMulti((fruit, mapper) -> mapper.accept(fruit.toUpperCase())).forEach(System.out::println);
+		    Stream.gather()
+	•	les nouvelles api (sequenced  collections FFM Class File API)
+	•	le formatage et le parsing de données
+	•	la programmation parallèle et concurrente
+	•	=> Très intéressant sur les stream gatherer & structured concurrency
+ 
 ```
 
 ### Marre des null en java, découvrez nullaway
@@ -286,7 +294,7 @@ Conference (INTERMEDIATE level) - Friday from 10:30-11:15 - Maillot
 ⸻
 	•	Présentation des différentes façon de faire un Hello World
 	•	de java 1.1 avec sout à java 24 plus concis et sans public class ni main static
-	•	plusieurs façons anecdotique relative à des libs java maintenant dépréciées
+	•	plusieurs façons anecdotiques relatives à des libs java maintenant dépréciées
 
 ```
 
@@ -308,7 +316,7 @@ Conference (INTERMEDIATE level) - Friday from 11:35-12:20 - Paris 143
 ```markdown
 #### Notes
 ⸻
-    •	Plateform threads = thin wrapper over os threads 
+	•	Plateform threads = thin wrapper over os threads 
             One to one mapping with os threads 
             Thread pools 
  	•	Virtual threads 
@@ -317,7 +325,7 @@ Conference (INTERMEDIATE level) - Friday from 11:35-12:20 - Paris 143
             No need for pooling 
  	•	Continuation
             Representation of the current state of the program 
-	•	Code bit.ly/javacontinuations
+	•	Code [Lien Github](https://github.com/balkrishnarawool/continuations)
 ```
 
 ### Tester les apps Spring Boot, sous toutes les coutures
@@ -336,7 +344,11 @@ Deep Dive (INTERMEDIATE level) - Friday from 13:30-16:30 - Paris 14
 ```markdown
 #### Notes
 ⸻
-
-notes...
+	•	MockMvcTester = nouveauté pour tester les APIs
+	•	toujours possible avec HttpUnit ou WebClient
+	•	Le contexte spring est réutilisé entre classes de tests si pas de mock ni profile (log trace permet de le vérifier)
+	•	Eviter qu'un bean soit init dans des test ? => Test config et allow bean overriding
+	•	Output Capture Extension pour capturer des logs
+	•	Possibilité de faire des assertions custom avec assertJ
 ```
 
