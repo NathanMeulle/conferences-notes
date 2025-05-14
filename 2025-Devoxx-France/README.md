@@ -152,7 +152,7 @@ Aller plus loin avec le stream processing :
 ```
 #### Avis ⭐⭐⭐⭐⭐
 
-[Lien du Replay]()
+[Lien du Replay](https://www.youtube.com/watch?v=TYn1zeojgc4)
 
 ### Booster le démarrage des applications Java : optimisations JVM et frameworks
 Conference (INTERMEDIATE level) - Thursday from 11:35-12:20 - Neuilly 151
@@ -199,7 +199,7 @@ Conference (INTERMEDIATE level) - Thursday from 11:35-12:20 - Neuilly 151
 ```
 #### Avis ⭐⭐☆☆☆
 
-[Lien du Replay]()
+[Lien du Replay](https://www.youtube.com/watch?v=9k2HX9GUZRg)
 
 ### AssertJ-DB : Validez vos opérations en bases de données avec style
 Lunch Talk (INTERMEDIATE level) - Thursday from 13:00-13:15 - Paris 143
@@ -217,7 +217,7 @@ Pas vu 😕, apparement pas compatible avec MongoDB
 ```
 #### Avis ⭐⭐⭐☆☆, bonne découverte (après avoir vu le replay)
 
-[Lien du Replay]()
+[Lien du Replay](https://www.youtube.com/watch?v=XILu4r3rIEc)
 
 ### Java SE en 2025 : les nouvelles API
 3H Hands-on Lab (INTERMEDIATE level) - Thursday from 13:30-16:30 - Paris 243
@@ -259,7 +259,7 @@ Pas vu 😕, apparement pas compatible avec MongoDB
 ```
 #### Avis ⭐⭐⭐⭐☆, TPs bien construits et progressifs
 
-[Lien du Replay]()
+[Lien des TPs](https://codesimcoe.github.io/workshop-javase-2025-api/evolutions-api.html)
 
 ### Marre des null en java, découvrez nullaway
 Tools-in-Action (INTERMEDIATE level) - Thursday from 17:00-17:30 - Maillot
@@ -292,7 +292,7 @@ Tools-in-Action (INTERMEDIATE level) - Thursday from 17:00-17:30 - Maillot
 
 #### Avis ⭐⭐⭐☆☆, REX intéressant avec de bonnes recommendations
 
-[Lien du Replay]()
+[Lien du Replay](https://www.youtube.com/watch?v=TV_nLJZssrE)
 
 
 ## Vendredi
@@ -318,9 +318,9 @@ Conference (INTERMEDIATE level) - Friday from 10:30-11:15 - Maillot
 	•	plusieurs façons anecdotiques relatives à des libs java maintenant dépréciées
 
 ```
-#### Avis ⭐⭐⭐☆☆
+#### Avis ⭐⭐⭐☆☆, bien pour sa culture personnelle
 
-[Lien du Replay]()
+[Lien du Replay](https://www.youtube.com/watch?v=kZ8AMRcEBwg)
 
 ### Continuations: The magic behind virtual threads in Java
 Conference (INTERMEDIATE level) - Friday from 11:35-12:20 - Paris 143
@@ -354,7 +354,7 @@ Conference (INTERMEDIATE level) - Friday from 11:35-12:20 - Paris 143
 
 #### Avis ⭐⭐☆☆☆, très technique pas sûr que cela me serve
 
-[Lien du Replay]()
+[Lien du Replay](https://www.youtube.com/watch?v=iwuGgGxD9lA)
 
 ### Tester les apps Spring Boot, sous toutes les coutures
 Deep Dive (INTERMEDIATE level) - Friday from 13:30-16:30 - Paris 14
@@ -382,4 +382,4 @@ Deep Dive (INTERMEDIATE level) - Friday from 13:30-16:30 - Paris 14
 
 #### Avis ⭐⭐⭐⭐☆, très intéressant mais je connaissais déjà une bonne partie
 
-[Lien du Replay]()
+[Lien du Replay](https://www.youtube.com/watch?v=7A2BmZNQ0Xc)
