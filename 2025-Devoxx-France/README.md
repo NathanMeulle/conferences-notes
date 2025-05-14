@@ -38,6 +38,9 @@ Keynote (BEGINNER level) - Thursday from 09:00-09:25 - Amphi bleu
 	•	Déformation du réel : plusieurs niveaux de distorsion de la vérité.
 	•	Rôle de l’IA : déjà utilisée pour manipuler le réel et les identités.
 ```
+#### Avis ⭐⭐⭐☆☆
+
+[Lien du Replay](https://www.youtube.com/watch?v=GDvcpgp2fn8&pp=0gcJCYsJAYcqIYzv)
 
 ### La territorialisation des infrastructures comme levier de pouvoir
 Keynote (BEGINNER level) - Thursday from 09:35-10:00 - Amphi bleu
@@ -67,6 +70,9 @@ Keynote (BEGINNER level) - Thursday from 09:35-10:00 - Amphi bleu
 	•	L’Afrique du Sud joue un rôle central en tant que point d’entrée des réseaux,
 	•	--> redistribue ensuite la connectivité aux autres pays du continent.
 ```
+#### Avis ⭐⭐⭐☆☆
+
+[Lien du Replay](https://www.youtube.com/watch?v=eSGbZM3XEpg)
 
 ### Développez plus efficacement grâce aux Design Patterns appliqués à MongoDB
 Conference (INTERMEDIATE level) - Thursday from 10:30-11:15 - Paris 143
@@ -144,6 +150,9 @@ Aller plus loin avec le stream processing :
 	•	Permet de définir des fenêtres temporelles
 	•	Permet de regrouper des événements pour faire du traitement en lots
 ```
+#### Avis ⭐⭐⭐⭐⭐
+
+[Lien du Replay]()
 
 ### Booster le démarrage des applications Java : optimisations JVM et frameworks
 Conference (INTERMEDIATE level) - Thursday from 11:35-12:20 - Neuilly 151
@@ -188,6 +197,9 @@ Conference (INTERMEDIATE level) - Thursday from 11:35-12:20 - Neuilly 151
 		| native image         | ★★★      | ★                |
 
 ```
+#### Avis ⭐⭐☆☆☆
+
+[Lien du Replay]()
 
 ### AssertJ-DB : Validez vos opérations en bases de données avec style
 Lunch Talk (INTERMEDIATE level) - Thursday from 13:00-13:15 - Paris 143
@@ -203,7 +215,9 @@ Lunch Talk (INTERMEDIATE level) - Thursday from 13:00-13:15 - Paris 143
 ⸻
 Pas vu 😕, apparement pas compatible avec MongoDB
 ```
+#### Avis ⭐⭐⭐☆☆, bonne découverte (après avoir vu le replay)
 
+[Lien du Replay]()
 
 ### Java SE en 2025 : les nouvelles API
 3H Hands-on Lab (INTERMEDIATE level) - Thursday from 13:30-16:30 - Paris 243
@@ -243,6 +257,9 @@ Pas vu 😕, apparement pas compatible avec MongoDB
 	•	=> Très intéressant sur les stream gatherer & structured concurrency
  
 ```
+#### Avis ⭐⭐⭐⭐☆, TPs bien construits et progressifs
+
+[Lien du Replay]()
 
 ### Marre des null en java, découvrez nullaway
 Tools-in-Action (INTERMEDIATE level) - Thursday from 17:00-17:30 - Maillot
@@ -273,6 +290,10 @@ Tools-in-Action (INTERMEDIATE level) - Thursday from 17:00-17:30 - Maillot
 
 ```
 
+#### Avis ⭐⭐⭐☆☆, REX intéressant avec de bonnes recommendations
+
+[Lien du Replay]()
+
 
 ## Vendredi
 ### 30 ans d'Hello World en Java avec les JDK 1.0 à 24
@@ -297,6 +318,9 @@ Conference (INTERMEDIATE level) - Friday from 10:30-11:15 - Maillot
 	•	plusieurs façons anecdotiques relatives à des libs java maintenant dépréciées
 
 ```
+#### Avis ⭐⭐⭐☆☆
+
+[Lien du Replay]()
 
 ### Continuations: The magic behind virtual threads in Java
 Conference (INTERMEDIATE level) - Friday from 11:35-12:20 - Paris 143
@@ -328,6 +352,10 @@ Conference (INTERMEDIATE level) - Friday from 11:35-12:20 - Paris 143
 	•	Code [Lien Github](https://github.com/balkrishnarawool/continuations)
 ```
 
+#### Avis ⭐⭐☆☆☆, très technique pas sûr que cela me serve
+
+[Lien du Replay]()
+
 ### Tester les apps Spring Boot, sous toutes les coutures
 Deep Dive (INTERMEDIATE level) - Friday from 13:30-16:30 - Paris 14
 > #### Abstract
@@ -352,3 +380,6 @@ Deep Dive (INTERMEDIATE level) - Friday from 13:30-16:30 - Paris 14
 	•	Possibilité de faire des assertions custom avec assertJ
 ```
 
+#### Avis ⭐⭐⭐⭐☆, très intéressant mais je connaissais déjà une bonne partie
+
+[Lien du Replay]()
