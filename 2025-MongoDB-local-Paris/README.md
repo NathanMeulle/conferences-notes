@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [MArdi](#mardi)
+- [Mardi](#mardi)
     - [Du local au cloud : une boîte à outils qui vous accompagne tout au long du cycle de développement](#du-local-au-cloud--une-boîte-à-outils-qui-vous-accompagne-tout-au-long-du-cycle-de-développement)
     - [Intégrez MongoDB Atlas à votre plateforme de développement interne](#intégrez-mongodb-atlas-à-votre-plateforme-de-développement-interne)
     - [Keynote](#keynote)
