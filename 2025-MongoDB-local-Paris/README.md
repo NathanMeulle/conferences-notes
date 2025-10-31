@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [Lundi](#lundi)
+- [MArdi](#mardi)
     - [Du local au cloud : une boîte à outils qui vous accompagne tout au long du cycle de développement](#du-local-au-cloud--une-boîte-à-outils-qui-vous-accompagne-tout-au-long-du-cycle-de-développement)
     - [Intégrez MongoDB Atlas à votre plateforme de développement interne](#intégrez-mongodb-atlas-à-votre-plateforme-de-développement-interne)
     - [Keynote](#keynote)
@@ -13,7 +13,7 @@
     - [La modélisation des données pour MongoDB : méthodologie et fondamentaux](#la-modélisation-des-données-pour-mongodb--méthodologie-et-fondamentaux)
     - [PostgreSQL ou MongoDB? Un regard technique au-delà des clichés](#postgresql-ou-mongodb-un-regard-technique-au-delà-des-clichés)
 
-## Lundi
+## Mardi
 
 ### Du local au cloud : une boîte à outils qui vous accompagne tout au long du cycle de développement
 4 novembre 2025 - 09:00-09:45CET - Intermédiaire - Baobab 1
