@@ -4,7 +4,6 @@
 
 - [Mardi](#mardi)
     - [Du local au cloud : une boîte à outils qui vous accompagne tout au long du cycle de développement](#du-local-au-cloud--une-boîte-à-outils-qui-vous-accompagne-tout-au-long-du-cycle-de-développement)
-    - [Intégrez MongoDB Atlas à votre plateforme de développement interne](#intégrez-mongodb-atlas-à-votre-plateforme-de-développement-interne)
     - [Keynote](#keynote)
     - [Transactions ACID dans MongoDB: deep dive et meilleures pratiques](#transactions-acid-dans-mongodb-deep-dive-et-meilleures-pratiques)
     - [Index MongoDB et plans d'exécutions pour des requêtes optimales](#index-mongodb-et-plans-dexécutions-pour-des-requêtes-optimales)
@@ -32,30 +31,29 @@
 ```markdown
 #### Notes
 ⸻
-	• ...
+Developer Workflow :
+- Configuration de l’environnement de développement et préparation des données
+- Écriture et test du code applicatif avec des outils intégrés et des outils d’IA
+- Automatisation des tests pour valider les fonctionnalités et garantir une intégration fluide dans le workflow
+
+Environnement de développement :
+- Nécessité d’un cluster MongoDB local
+- Utilisation d’Atlas Search pour la recherche full-text, et Vector Search pour la recherche sémantique sur les datasets
+- Déploiement via Atlas CLI avec la commande `atlas deployment setup` (nécessite Docker)
+- Résultat de la vectorisation : création d’un champ `embeddedMyField` lié au champ `MyField` pour la recherche vectorielle
+- La dernière version de MongoDB permet d’effectuer simultanément des recherches full-text et sémantiques
+- Olama : permet d’utiliser des LLM et des embeddings open source (effectue la vectorisation des recherches)
+- Mise en place du serveur MCP pour MongoDB Atlas et la base de données (connexion via connection string dans les paramètres MCP)
+- Possibilité de taguer `@Mongo /query` dans Copilot
+- Plugin MongoDB pour IntelliJ : recommandations d’index disponibles directement dans le plugin
+
+Intégration continue :
+- GitHub Actions : service MongoDB avec images Docker pour exécuter les tests dans un environnement MongoDB dockerisé
+- Échec des tests E2E dû à une durée de requête trop longue
 ```
-#### Avis ^[⭐☆]{5}$
+#### Avis ⭐⭐⭐☆☆
+Plusieurs problèmes techniques lors de la démonstration, mais la présentation reste intéressante, bien qu’un peu en décalage avec la description initiale.
 
-### Intégrez MongoDB Atlas à votre plateforme de développement interne
-4 novembre 2025 - 09:00-09:45CET - Débutant - Acacia 5
-> #### Abstract
->
-> Les équipes d’Ops et de Platform Engineering jouent un rôle crucial pour permettre à des milliers, voire des dizaines de milliers de développeurs d'innover et de créer à grande échelle avec MongoDB Atlas.
->
-> Venez découvrir comment créer une expérience développeur fluide et en self-service à l'aide d'une landing zone Atlas intégrée à des pipelines CI/CD modernes.
->
-> Nous vous proposerons une démonstration d'une landing zone GitOps, mettant l'accent sur les intégrations avec l'infrastructure en tant que code (IaC), l'automatisation et des pratiques de sécurité robustes. Vous verrez comment ces outils améliorent la productivité des développeurs tout en maintenant le contrôle opérationnel, en garantissant la conformité et l’agilité.
-
-> #### Speaker Bio : Charles Van Parys
->Senior Solutions Architect
->MongoDB
-
-```markdown
-#### Notes
-⸻
-	• ...
-```
-#### Avis ^[⭐☆]{5}$
 
 ### Keynote
 4 novembre 2025 - 10:00-11:00CET - Amphitéâtre Epicéa
@@ -68,9 +66,29 @@
 ```markdown
 #### Notes
 ⸻
-	• ...
+Keynote - Boris Bialek
+- Introduction sur les changements fréquents autour de l’IA
+- Notion d’agents
+
+Daniel - MongoDB 8.2
+- Queryable Encryption : ajout des recherches avec préfixe/suffixe
+- Support de version sur 3 ans, 5 ans pour les versions Long Term Support (LTS - version 8)
+
+Fred Roma - IA
+- Différences entre le modèle de voyage pour construire l'embedding utilisé par les agents et la recherche
+- Textuel : modèle de voyage 3.5
+- Multimodal : modèle multimodal de voyage 3.5
+- Contextuel : modèle de contexte 3
+- Reranker : rerank 2.5
+- Base de données d'embeddings, reranker vectoriel, texte déjà inclus dans une plateforme
+- Cf. repo 2
+
+Application Modernisation Platform
+
 ```
-#### Avis ^[⭐☆]{5}$
+#### Avis ⭐⭐⭐⭐☆
+Une keynote dynamique et intéressante, à l'image de celles d'Apple.
+
 
 ### Transactions ACID dans MongoDB: deep dive et meilleures pratiques
 4 novembre 2025 - 11:15-12:00CET - Intermédiaire - Acacia 5
@@ -85,9 +103,43 @@
 ```markdown
 #### Notes
 ⸻
-	• ...
+Transactions ACID dans MongoDB - Deep Dive
+
+- Introduction sur les transactions dans les bases de données : notion d'isolation. Contrairement aux bases relationnelles, MongoDB ne verrouille pas, mais gère les conflits. Une opération multiple peut rencontrer les mêmes problèmes de concurrence.
+
+- Transactions sur un seul document :
+  - Pour initier une transaction (T1), il faut d'abord créer une session (`db.getMongo.startSession`, `session1.startTransaction`).
+  - Une fois la transaction démarrée, les opérations effectuées (comme un insert) ne sont pas visibles par les autres sessions tant qu'elles ne sont pas validées (commit).
+  - Si une autre session tente de modifier les mêmes données, un conflit d'écriture (Write Conflict) se produit, entraînant l'annulation de la transaction (abortTransaction) et la nécessité de recommencer.
+  - La transaction ne démarre réellement qu'à la première écriture. Dans un système relationnel, cela aurait entraîné un verrouillage en attente.
+
+- Démonstration 1 :
+  - Session 1 : mise à jour avec T explicite (update x+1)
+  - Session 2 : mise à jour sans T explicite (update one x+1) => semble bloquée
+  - Plus de 300 conflits détectés, MongoDB réessaie en interne. Le timeout par défaut d'une transaction MongoDB est de 1 minute (modifiable avec `transactionLifeTimeLimitSeconds` pour toute la base de données).
+  - Les retries sont transparents avec un backoff exponentiel. Les 4 premières tentatives se font sans délai. MongoDB est optimisé pour des transactions courtes. Toute transaction sera annulée si le timeout est atteint, entraînant une erreur au commit.
+
+- Démonstration 2 : utilisation d'un pipeline d'agrégation pour visualiser le nombre de conflits.
+
+- Transactions multi-documents :
+  - Ce n'est généralement pas une bonne pratique, car MongoDB n'écrit pas sur disque tant que ce n'est pas validé (contrairement à PostgreSQL). Cela peut entraîner une pression mémoire.
+  - Une solution possible évoquée serait une gestion au niveau applicatif (par batch et/ou avec un flag).
+
+- Sur Atlas, comment analyser ces requêtes ? Comment s'assurer que nos transactions sont courtes ? Pas de solutions claires pour le moment.
+- Le temps de rollback est-il toujours court ou dépend-il de l'opération ? Les modifications sont effectuées en mémoire et les versions sont conservées, ce qui permet un rollback rapide.
+
+- Les transactions lentes ? Un benchmark entre PostgreSQL et MongoDB n'est pas pertinent dans ce contexte.
+- Avec Spring Data : annotation `@Retryable`, activer `enableRetry`, utiliser `MongoTxManager`.
+
+- En résumé :
+  - ACID ? Atomicité : oui, visible au commit ou rollback automatique. Cohérence : oui, la validation du schéma s'applique immédiatement. Isolation : par snapshot (pas de sérialisation). Durabilité : oui, les écritures sont synchronisées sur le disque local.
+  - Persistance : pas de force, pas de vol, pas de persistance des changements non validés.
+
+- Pression mémoire : éviter les transactions longues, pas besoin de vacuum pour les changements non validés.
 ```
-#### Avis ^[⭐☆]{5}$
+#### Avis ⭐⭐⭐⭐☆
+Présentation très claire et détaillée sur les transactions dans MongoDB, avec des démonstrations pertinentes. Quelques détails supplémentaires sur les mécanismes internes de gestion des transactions auraient été appréciés.
+
 
 ### Index MongoDB et plans d'exécutions pour des requêtes optimales
 4 novembre 2025 - 12:10-12:55CET - Intermédiaire - Acacia 5
@@ -102,9 +154,45 @@
 ```markdown
 #### Notes
 ⸻
-	• ...
+- Dans MongoDB, tous les documents d'une collection sont stockés avec un identifiant interne et dans le champ `_id`.
+- Utilisation du `record_id` en interne, basé sur un arbre B (B-tree). Le `record_id` est en fait une séquence qui s'incrémente. Ainsi, deux petits documents insérés simultanément auront des `record_id` proches.
+- Bien que l'on ne contrôle pas la proximité des documents insérés, deux documents insérés en même temps auront des `record_id` assez proches.
+
+- Single Collection Design :
+  - Tout mettre dans la même collection n'assure pas nécessairement que cela ira au même endroit, sauf en cas d'insertion simultanée.
+
+- Démonstration : création d'une collection, recherche sans tri, retour dans l'ordre d'insertion basé sur le `record_id`.
+  - Possibilité d'afficher le `recordID` avec `find().showRecordId()` (incrémental par collection). Si le `record_id` 3 est supprimé, il ne sera pas réutilisé.
+  - Le `record_id` peut être différent entre plusieurs réplicas.
+
+- Analyse des plans de requête avec `find.explain().executionStats` :
+  - Sans index : `COLLSCAN`.
+  - Sans tri explicite, on peut voir quel index est utilisé en regardant l'ordre des résultats retournés.
+  - Si `null` dans l'index, sauf si index sparse.
+
+- Utilisation de `hint` pour forcer l'utilisation d'un index.
+
+- En SQL, si le hint est incorrect, il n'est pas utilisé. En MongoDB, si le hint pointe vers un index inexistant, cela entraîne une erreur.
+
+- Projection pour montrer la gestion de différents types de données dans l'index.
+
+- Dans les plans de requête, on peut voir le `winning plan` et le `rejectedPlan`. MongoDB analyse les deux options et choisit la meilleure.
+  - Avec `getPlanCache`, on peut retrouver le `winning plan`.
+
+- MongoDB exécute-t-il toujours les requêtes jusqu'au bout ? Pas vraiment. Il s'arrête à 30% de la collection, 10K unités de travail ou 101 documents.
+  - Le `winning plan` peut être jusqu'à 10 fois moins performant.
+
+- L'index fonctionne également sur des opérateurs `$in`.
+
+- Bonnes pratiques :
+  - Minimiser le nombre total de documents examinés.
+  - Minimiser le nombre total de clés examinées.
+  - Éviter `sort.limit` pour la pagination.
+  - Si plusieurs critères d'égalité pour filtrer, mettre le champ le plus restrictif en premier.
 ```
-#### Avis ^[⭐☆]{5}$
+#### Avis ⭐⭐⭐☆☆
+Présentation claire et intéressante sur les plans de requête et l'indexation dans MongoDB. Bien que certains concepts aient été déjà connus, d'autres ont apporté des précisions utiles.
+
 
 ### Passer à l’échelle : comment MongoDB Atlas accompagne votre croissance
 4 novembre 2025 - 13:55-14:40CET - Intermédiaire - Baobab 1
@@ -121,9 +209,18 @@
 ```markdown
 #### Notes
 ⸻
-	• ...
+Building for Scale
+
+- De l'offre gratuite à l'offre flex avec M10 et autoscaling.
+- Multi-régions, sharding.
+- Exemple de Betclic :
+  - Lecture après écriture.
+  - Maintien de la connexion ouverte en définissant la taille minimale du pool de connexions.
+  - Écriture en masse : création manuelle du document BSON pour plus de rapidité.
+  - Tests avec Test Container.
 ```
-#### Avis ^[⭐☆]{5}$
+#### Avis ⭐⭐⭐⭐☆
+Intéressant, il manquait quelques indicateurs/métriques qui justifie les changements de cluster. REX betclic très intéressant.
 
 ### MongoDB: mythes vs. vérité, pour mieux comprendre le fonctionnement
 4 novembre 2025 - 14:50-15:35CET - Intermédiaire - Amphitéâtre Epicéa
@@ -138,9 +235,36 @@
 ```markdown
 #### Notes
 ⸻
-	• ...
+- Pas de schéma avec NoSQL ?
+  En réalité, il y a un schéma flexible, avec possibilité de validation. Les bases relationnelles offrent également une certaine flexibilité (ex : `CREATE TABLE AS SELECT`).
+  Lors de la création d'un index sur un champ `name`, cela implique implicitement l'existence d'un champ `name` dans le schéma. Des validateurs peuvent être mis en place pour s'assurer que les données respectent certaines regex.
+
+- Seulement pour des cas clé-valeur ?
+
+- Transactions lentes ?
+  Depuis MongoDB 4.0, les benchmarks avec PostgreSQL montrent des résultats peu concluants en raison de fausses hypothèses et de tests inappropriés.
+
+- Cohérence éventuelle ?
+  MongoDB offre une garantie ACID par défaut.
+
+- Fiabilité de MongoDB ?
+  Utilisation des checksums WiredTiger, stockés dans chaque bloc et à chaque adresse.
+
+- Jointures lentes ?
+  Il est possible d'éviter les jointures en utilisant un modèle avec du "many" dans le "one".
+  L'embedding simplifie les choses.
+  La commande `lookup` est un peu plus rapide sur PostgreSQL, mais la flexibilité du schéma sur MongoDB peut rendre les choses légèrement plus lentes.
+
+- Émulations MongoDB :
+  Fonctionnent au-dessus des bases de données SQL, mais MongoDB présente plusieurs avantages en termes de stockage des documents.
+
+- Limite de 16 Mo trop basse ?
+  La taille idéale d'un document est bien en deçà de cette limite. Des documents de quelques centaines de Ko sont optimaux.
+
+- Cohérence sans clé étrangère ?
+  Les associations fortes sont intégrées.
 ```
-#### Avis ^[⭐☆]{5}$
+#### Avis ⭐⭐⭐☆☆
 
 ### La modélisation des données pour MongoDB : méthodologie et fondamentaux
 4 novembre 2025 - 15:50-16:35CET - Intermédiaire - Amphitéâtre Epicéa
@@ -157,9 +281,68 @@
 ```markdown
 #### Notes
 ⸻
-	• ...
+- Introduction :
+  Évolution des ensembles de données :
+  - Années 1970 : 10 Mo
+  - Années 1980 : 100 Mo
+  - Années 1990 : 10 Go
+  - Années 2000 : 1 To
+  - Années 2010 : 100 To
+  - Années 2020 : Po+
+
+  Évolutions des besoins en performances (millions de clients), développement plus rapide (agile), sécurité (cyber et RGPD).
+
+- Identification du type de projet :
+  - Nombre d'opérations en écriture et en lecture, exigences de latence, volume de données, simplicité/agilité.
+
+- Quatre points pour définir un schéma MongoDB :
+  - Exigences/entités
+  - Charge de travail
+  - Relations
+  - Patrons de conception
+
+- Exigences :
+  - Cas d'utilisation clients/produits.
+  - Identification des entités fortes/principales (ex : clients, commandes, produits).
+  - Tables de valeurs (ex : villes, pays).
+  - Tables associatives (ex : contenant `orderId` et `productId`) : en MongoDB, on utilise des documents imbriqués (ex : `lineItems` pour les lignes de commandes).
+  - Entités faibles (ex : adresses).
+
+  => Le modèle résultant ne comportera pas autant de documents que prévu.
+
+- Charges de travail :
+  - Lister les opérations en écriture/lecture avec leur fréquence et latence.
+  - Objectif : colocalisation des données pour des lectures rapides, précalcul des données.
+
+- Relations :
+  - Imbriquation (objets imbriqués, impossible en base relationnelle) ou référence (clé étrangère pointant vers un document, possible en base relationnelle).
+  - Les données utilisées ensemble dans l'application doivent être stockées ensemble dans la base de données.
+
+- Patrons de conception :
+  Duplication des données : causes, impacts et stratégies de gestion. Liée à l'obsolescence. Quatre types de duplication :
+  - Immuables (ex : date d'acquisition client).
+  - Temporelles (ex : adresse client, sensibles à l'obsolescence).
+  - Peu sensibles à l'obsolescence (prévoir des tâches périodiques pour mettre à jour les occurrences).
+
+  - Compromis entre obsolescence et duplication des données (coût et complexité de maintien vs amélioration des performances et réduction des coûts).
+
+  - Extended Reference Pattern : cf photo.
+
+  - Computed Pattern : cf photo, ex : calcul de la note moyenne avec les différents documents de note.
+
+  - Approximation Pattern : cf photo.
+
+  - Archive Pattern : cf photo.
+
+  - Schéma Versioning : cf photo, ajout d'un numéro de version dans le document.
+
+  - Anti-pattern : ignorer la validation du schéma. Ajouter de la validation avec `jsonSchema` (ex : champs requis, propriétés sur les champs).
+
+Conclusion :
+Modélisation moderne, méthodologie de modélisation, patrons de conception.
 ```
-#### Avis ^[⭐☆]{5}$
+#### Avis ⭐⭐⭐⭐☆
+Présentation très intéressante sur la modélisation des données dans MongoDB, avec des exemples concrets et des bonnes pratiques.
 
 ### PostgreSQL ou MongoDB? Un regard technique au-delà des clichés
 4 novembre 2025 - 16:45-17:15CET - Intermédiaire - Amphitéâtre Epicéa
@@ -174,6 +357,30 @@
 ```markdown
 #### Notes
 ⸻
-	• ...
+- Historique de MongoDB :
+  En 2015, MongoDB a acquis WiredTiger pour optimiser le stockage des BSON.
+
+- Le plus rapide ?
+  Cela dépend du type et de la taille des documents.
+
+- Créer du NoSQL sur PostgreSQL ?
+  L'idée première de MongoDB n'est pas de gérer des tables, mais de stocker directement le document métier.
+  La raison principale d'une base de données documentaire est la localité des données. MongoDB stocke l'ensemble du document au même endroit, contrairement à PostgreSQL qui stocke par défaut des blocs de 8 Ko, max 32 Ko.
+
+- MongoDB : un seul type d'index physiquement (B-tree) ; PostgreSQL utilise des index Gin, plusieurs clés pour un document.
+  - Fonctionne pour trouver une valeur dans un champ, mais pas pour des opérations supérieures à ou pour trier les valeurs.
+  - Sur PostgreSQL, l'index du JSON n'est pas optimisé.
+
+- Photos DDD
+
+- Benchmarks publiés :
+  Attention, comparaison difficile à faire. Sur du clé-valeur, ce n'est pas génial. Le schéma ne sera pas le même entre MongoDB et PostgreSQL.
+  Haute disponibilité sur PostgreSQL pas optimale, des benchmarks sont nécessaires à ce sujet.
+
+- Conclusion :
+  Ce n'est pas simplement "j'ai du JSON à stocker" => MongoDB.
+  Si DDD avec itérations fréquentes, pas besoin de synchronisation avec d'autres équipes => MongoDB peut être une bonne solution.
 ```
-#### Avis ^[⭐☆]{5}$
+#### Avis ⭐⭐☆☆☆
+Présentation réalisée en 30 minutes, très rapide, sans entrer dans les détails. Beaucoup de sujets intéressants méritant d'être approfondis.
+
