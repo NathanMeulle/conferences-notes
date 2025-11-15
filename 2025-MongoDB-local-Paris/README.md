@@ -140,6 +140,8 @@ Transactions ACID dans MongoDB - Deep Dive
 #### Avis ⭐⭐⭐⭐☆
 Présentation très claire et détaillée sur les transactions dans MongoDB, avec des démonstrations pertinentes. Quelques détails supplémentaires sur les mécanismes internes de gestion des transactions auraient été appréciés.
 
+##### [Lien des slides](https://docs.google.com/presentation/d/1jmQE-q8pNdHazQekYESQGTVFtJHwD8RmvXMQR8TYD4g/mobilepresent?slide=id.g39f8dceade9_0_3051)
+
 
 ### Index MongoDB et plans d'exécutions pour des requêtes optimales
 4 novembre 2025 - 12:10-12:55CET - Intermédiaire - Acacia 5
@@ -192,6 +194,8 @@ Présentation très claire et détaillée sur les transactions dans MongoDB, ave
 ```
 #### Avis ⭐⭐⭐☆☆
 Présentation claire et intéressante sur les plans de requête et l'indexation dans MongoDB. Bien que certains concepts aient été déjà connus, d'autres ont apporté des précisions utiles.
+
+##### [Lien des slides](https://docs.google.com/presentation/d/1jmQE-q8pNdHazQekYESQGTVFtJHwD8RmvXMQR8TYD4g/mobilepresent?slide=id.g39f8dceade9_0_3051)
 
 
 ### Passer à l’échelle : comment MongoDB Atlas accompagne votre croissance
@@ -265,6 +269,9 @@ Intéressant, il manquait quelques indicateurs/métriques qui justifie les chang
   Les associations fortes sont intégrées.
 ```
 #### Avis ⭐⭐⭐☆☆
+
+##### [Lien des slides](https://docs.google.com/presentation/d/1jmQE-q8pNdHazQekYESQGTVFtJHwD8RmvXMQR8TYD4g/mobilepresent?slide=id.g39f8dceade9_0_3051)
+
 
 ### La modélisation des données pour MongoDB : méthodologie et fondamentaux
 4 novembre 2025 - 15:50-16:35CET - Intermédiaire - Amphitéâtre Epicéa
@@ -383,4 +390,6 @@ Présentation très intéressante sur la modélisation des données dans MongoDB
 ```
 #### Avis ⭐⭐☆☆☆
 Présentation réalisée en 30 minutes, très rapide, sans entrer dans les détails. Beaucoup de sujets intéressants méritant d'être approfondis.
+
+##### [Lien des slides](https://docs.google.com/presentation/d/1jmQE-q8pNdHazQekYESQGTVFtJHwD8RmvXMQR8TYD4g/mobilepresent?slide=id.g39f8dceade9_0_3051)
 
